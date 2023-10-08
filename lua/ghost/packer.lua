@@ -14,20 +14,20 @@ return require('packer').startup(function(use)
   }
 
 
-  use ({ 
+  use ({
 	  "catppuccin/nvim",
-	  as = "catppuccin", 
-  	  config = function() 
+	  as = "catppuccin",
+  	  config = function()
 	  	vim.cmd('colorscheme catppuccin')
   	  end
        })
 
-       use { 'nvim-telescope/telescope-fzf-native.nvim', 
+       use { 'nvim-telescope/telescope-fzf-native.nvim',
        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 
   use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
-  
+
   use({
       "folke/trouble.nvim",
       config = function()
@@ -39,6 +39,11 @@ return require('packer').startup(function(use)
           }
       end
   })
+
+  use {
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+  }
 
 
   use("axelvc/template-string.nvim")
