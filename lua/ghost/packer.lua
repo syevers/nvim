@@ -81,5 +81,14 @@ return require('packer').startup(function(use)
       }
   }
 
+
+  require('packer').startup(function()
+      use {
+          'stevearc/conform.nvim',
+          config = function() require('conform').setup() end
+      }
+  end)
+
+
   end)
 
