@@ -1,7 +1,7 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
 
   use ({
 	  "catppuccin/nvim",
@@ -22,11 +23,8 @@ return require('packer').startup(function(use)
   	  end
        })
 
-       use { 'nvim-telescope/telescope-fzf-native.nvim',
-       run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 
-  use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
 
   use({
       "folke/trouble.nvim",
@@ -40,19 +38,19 @@ return require('packer').startup(function(use)
       end
   })
 
-  use {
+  use ({
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
-  }
+  })
 
 
   use("axelvc/template-string.nvim")
-  use("nvim-treesitter/playground")
+--use("nvim-treesitter/playground")
   use("theprimeagen/harpoon")
 
-  use("theprimeagen/refactoring.nvim")
+-- use("theprimeagen/refactoring.nvim")
   use("mbbill/undotree")
-  use("tpope/vim-fugitive")
+--  use("tpope/vim-fugitive")
   use("nvim-treesitter/nvim-treesitter-context")
 
   use {
@@ -81,14 +79,10 @@ return require('packer').startup(function(use)
       }
   }
 
-
-  require('packer').startup(function()
-      use {
+use {
           'stevearc/conform.nvim',
           config = function() require('conform').setup() end
       }
-  end)
+end)
 
-
-  end)
 
