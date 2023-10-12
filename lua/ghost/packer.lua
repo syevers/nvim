@@ -43,8 +43,12 @@ return require('packer').startup(function(use)
       config = function() require("nvim-autopairs").setup {} end
   })
 
+-- color codes in neovim
+  use("norcalli/nvim-colorizer.lua")
 
+-- changes "" or `` in a template
   use("axelvc/template-string.nvim")
+  
 --use("nvim-treesitter/playground")
   use("theprimeagen/harpoon")
 
