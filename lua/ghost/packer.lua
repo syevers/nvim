@@ -15,6 +15,7 @@ return require('packer').startup(function(use)
 
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
 
+-- THEMES
   use ({
 	  "catppuccin/nvim",
 	  as = "catppuccin",
@@ -22,6 +23,15 @@ return require('packer').startup(function(use)
 	  	vim.cmd('colorscheme catppuccin')
   	  end
        })
+
+
+--  use ({
+--"rose-pine/neovim",
+--as = "rose-pine",
+--config = function()
+--  vim.cmd('colorscheme rose-pine')
+--end
+-- })
 
 
 

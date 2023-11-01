@@ -1,15 +1,32 @@
 require('catppuccin').setup({
-    disable_background=false
+    no_italic= true,
+    transparent_background=true,
+    styles = {
+        comments = {},
+    },
 })
+
+--require('rose-pine').setup({
+--    disable_background=true,
+--    variant = 'main',
+--    disable_italics = true,
+--})
 
 function ColorMyPencils(color)
     color = color or "catppuccin"
     vim.cmd.colorscheme(color)
 
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+
+
+--function ColorMyPencils(color)
+--    color = color or "rose-pine"
+--    vim.cmd.colorscheme(color)
+
 --    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 --    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
---
---
-end
+--end
 
 ColorMyPencils()
