@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.3',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.6',
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
@@ -37,16 +37,35 @@ return require('packer').startup(function(use)
 
 
   use({
-      "folke/trouble.nvim",
-      config = function()
-          require("trouble").setup {
-              icons = false,
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
-          }
-      end
-  })
+        "folke/trouble.nvim",
+        config = function()
+            require("trouble").setup {
+                icons = false,
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    })
+
+    -- Lua
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
+
+
+
+
+
 
   use ({
       "windwp/nvim-autopairs",
@@ -62,10 +81,12 @@ return require('packer').startup(function(use)
 --use("nvim-treesitter/playground")
   use("theprimeagen/harpoon")
 
--- use("theprimeagen/refactoring.nvim")
-  use("mbbill/undotree")
---  use("tpope/vim-fugitive")
-  use("nvim-treesitter/nvim-treesitter-context")
+ use("theprimeagen/refactoring.nvim")
+ use("mbbill/undotree")
+ use("tpope/vim-fugitive")
+ use("nvim-treesitter/nvim-treesitter-context")
+
+ use("https://github.com/tpope/vim-surround")
 
   use {
       'VonHeikemen/lsp-zero.nvim',

@@ -1,4 +1,3 @@
-vim.opt.guicursor = ""
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -12,9 +11,9 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
-vim.opt.termguicolors = true
+vim.opt.termguicolors = false
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 16
 
 vim.opt.colorcolumn = "90"
 
@@ -23,7 +22,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-vim.cmd.colorscheme "catppuccin-mocha"
+--vim.cmd.colorscheme "catppuccin-mocha"
 vim.opt.updatetime = 50
 
 vim.opt.swapfile = false
