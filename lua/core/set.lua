@@ -11,7 +11,7 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 16
 
