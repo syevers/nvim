@@ -2,20 +2,22 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.preset("recommended")
 
 lsp_zero.on_attach(function(client, bufnr)
-    local opts = {buffer = bufnr, remap = false}
-       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(bufnr, true)
-        end
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    --local opts = {buffer = bufnr, remap = false}
+    --    if client.server_capabilities.inlayHintProvider then
+    --         vim.lsp.inlay_hint.enable(true)
+    -- end
+
+    vim.keymap.set("n", "<leader>uh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, {buffer = bufnr, remap = false, desc = "toggle inlay_hint"})
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, {buffer = bufnr, remap = false, desc = "goto fn definition"})
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, {buffer = bufnr, remap = false, desc = "hover"})
+    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, {buffer = bufnr, remap = false, desc = "workspace_symbol"})
+    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, {buffer = bufnr, remap = false, desc = "view diagnostic"})
+    -- vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, {buffer = bufnr, remap = false, desc = "goto_next error"})
+    -- vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, {buffer = bufnr, remap = false, desc = "goto_prev"})
+    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, {buffer = bufnr, remap = false, desc = "fix error"})
+    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, {buffer = bufnr, remap = false, desc = "view references"})
+    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, {buffer = bufnr, remap = false, desc = "rename function"})
+    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, remap = false, desc = "signature_help"})
 
 end)
 
@@ -34,11 +36,41 @@ require('mason-lspconfig').setup({
                 capabilities = capabilities,
                 settings = {
                     basedpyright = {
-                        typeCheckingMode = "standard",
+                        -- typeCheckingMode = "standard",
+                        typeCheckingMode = "off",
                     },
                 },
             })
-        end
+        end,
+--         pylsp = function()
+--             lspconfig['pylsp'].setup({
+--                 capabilities = capabilities,
+--                 flags = {
+--                     debounce_text_changes = 200,
+--                 },
+--                 settings = {
+--                     pylsp = {
+--                         plugins = {
+--                             -- formatter options
+--                             black = { enabled = true },
+--                             autopep8 = { enabled = false },
+--                             yapf = {enabled = false },
+--                             -- linter options
+--                             pylint = { enabled = false, executable = "pylint" },
+--                             pyflakes = { enabled = false },
+--                             pycodestyle = { enabled = false },
+--                             -- type checker
+--                             pylsp_mypy = { enabled = true },
+--                             -- auto-completion options
+--                             jedi_completion = { fuzzy = true},
+--                             -- import sorting
+--                             -- pyls_isort = { enabled = true},
+--
+--                         },
+--                     },
+--                 },
+--             })
+--         end,
     }
 })
 local cmp = require('cmp')

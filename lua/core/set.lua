@@ -13,7 +13,8 @@ vim.opt.wrap = false
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 16
+-- vim.opt.scrolloff = 16
+vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = "90"
 
@@ -33,3 +34,6 @@ vim.opt.undofile = true
 vim.opt.signcolumn="yes"
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
+
+vim.opt.nf = "alpha"
+-- vim.opt.conceallevel = 1
