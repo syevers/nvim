@@ -37,3 +37,5 @@ vim.opt.hlsearch = false
 
 vim.opt.nf = "alpha"
 -- vim.opt.conceallevel = 1
+
+-- vim.opt.foldmethod = "indent"

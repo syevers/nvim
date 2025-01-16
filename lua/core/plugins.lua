@@ -1,5 +1,9 @@
 require("lazy").setup({
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000},
+    -- THEMES
+    --{ "rose-pine/neovim", name = "rose-pine" }
+    { "catppuccin/nvim", name = "catppuccin" },
+    { "loctvl842/monokai-pro.nvim", name="monokai-pro", priority = 1000 },
+    -- { "catppuccin/nvim", name = "catppuccin", priority = 1000},
     -- color codes in neovim
     "norcalli/nvim-colorizer.lua",
     -- changes "" or `` in a template
@@ -10,38 +14,40 @@ require("lazy").setup({
     "mbbill/undotree",
     "tpope/vim-fugitive",
     "nvim-treesitter/nvim-treesitter",
+    'matze/vim-move',
     -- "nvim-treesitter/nvim-treesitter-context",
     "https://github.com/tpope/vim-surround",
-    "tpope/vim-dadbod",
+    {"tpope/vim-dadbod", lazy = true},
+    -- w key motions
+    "https://github.com/chaoren/vim-wordmotion",
     {'akinsho/toggleterm.nvim', version = "*", opts = {open_mapping = [[<c-\>]]}},
-
-    -- del later
-    "ThePrimeagen/vim-be-good",
-
-
-
+    { "nvim-tree/nvim-web-devicons", opts = {} },
     --LSP
     { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
     -- LSP Support
-    'neovim/nvim-lspconfig',
+    {'neovim/nvim-lspconfig', dependencies = {"jose-elias-alvarez/typescript.nvim"}},
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     -- Autocompletion
-    'hrsh7th/nvim-cmp',
+    {'hrsh7th/nvim-cmp', priority = 100, lazy = false},
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
+    'stevearc/conform.nvim',
+    -- 'onsails/lspkind.nvim',
     -- Snippets
-    'L3MON4D3/LuaSnip',
-    'rafamadriz/friendly-snippets',
+    {
+        'L3MON4D3/LuaSnip',
+        dependencies = {    'rafamadriz/friendly-snippets' },
+        build = "make install_jsregexp",
+    },
     {
         'nvim-telescope/telescope.nvim', branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
-    --{ "rose-pine/neovim", name = "rose-pine" }
     {
         "folke/which-key.nvim",
         config = function()
@@ -50,11 +56,28 @@ require("lazy").setup({
             require("which-key").setup {}
         end
     },
+    -- lazy.nvim
+    -- {
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --         -- add any options here
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         "MunifTanjim/nui.nvim",
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         "rcarriga/nvim-notify",
+    --     }
+    -- },
 
     {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     },
+    { "j-hui/fidget.nvim", opts = {} },
 
     -- {
     --     "kndndrj/nvim-dbee",
