@@ -13,7 +13,7 @@ vim.opt.wrap = false
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 16
+vim.opt.scrolloff = 24
 
 vim.opt.colorcolumn = "90"
 

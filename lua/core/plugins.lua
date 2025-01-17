@@ -1,5 +1,6 @@
 require("lazy").setup({
     { "catppuccin/nvim", name = "catppuccin", priority = 1000},
+    'fladson/vim-kitty',
     -- color codes in neovim
     "norcalli/nvim-colorizer.lua",
     -- changes "" or `` in a template

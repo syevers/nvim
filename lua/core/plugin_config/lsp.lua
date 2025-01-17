@@ -4,7 +4,7 @@ lsp_zero.preset("recommended")
 lsp_zero.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
        if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true)
+        vim.lsp.inlay_hint.enable(false)
        -- DEPRECATED vim.lsp.inlay_hint.enable(bufnr, true)
         end
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -23,7 +23,7 @@ end)
 local lspconfig = require('lspconfig')
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {'tsserver', 'rust_analyzer'},
+    ensure_installed = {'ts_ls', 'rust_analyzer'},
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
@@ -35,7 +35,8 @@ require('mason-lspconfig').setup({
                 capabilities = capabilities,
                 settings = {
                     basedpyright = {
-                        typeCheckingMode = "standard",
+                        -- typeCheckingMode = "standard",
+                        typeCheckingMode = "off",
                     },
                 },
             })
