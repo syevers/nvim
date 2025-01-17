@@ -23,6 +23,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
+  callback = function()
+    vim.cmd("highlight Directory guibg=NONE guifg=#89b4fa")
+  end,
+})
 
 require("core.remap")
 require("core.set")

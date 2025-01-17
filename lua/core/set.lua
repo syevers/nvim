@@ -33,3 +33,4 @@ vim.opt.undofile = true
 vim.opt.signcolumn="yes"
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
+vim.opt.nf = "alpha"
