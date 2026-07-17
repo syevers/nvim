@@ -1,4 +1,8 @@
-plugin/packer_compiled.lua
-.DS_Store
-core/packer.lua.bak.lua
-
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data

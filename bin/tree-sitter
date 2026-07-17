@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cmd="${1:-}"
+
+case "$cmd" in
+  --version|-V|version)
+    echo "tree-sitter 0.0.0 (nvim wrapper)"
+    ;;
+  build)
+    shift
+
+    output="parser.so"
+    while [ "$#" -gt 0 ]; do
+      case "$1" in
+        -o|--output)
+          output="$2"
+          shift 2
+          ;;
+        *)
+          shift
+          ;;
+      esac
+    done
+
+    src_dir="$PWD/src"
+    parser_c="$src_dir/parser.c"
+    scanner_c="$src_dir/scanner.c"
+    scanner_cc="$src_dir/scanner.cc"
+
+    if [ ! -f "$parser_c" ]; then
+      echo "tree-sitter wrapper: missing $parser_c" >&2
+      exit 1
+    fi
+
+    compiler="cc"
+    args=(-O2 -fPIC -shared -I"$src_dir" "$parser_c")
+
+    if [ -f "$scanner_c" ]; then
+      args+=("$scanner_c")
+    fi
+
+    if [ -f "$scanner_cc" ]; then
+      compiler="c++"
+      args+=("$scanner_cc")
+    fi
+
+    exec "$compiler" "${args[@]}" -o "$output"
+    ;;
+  generate)
+    echo "tree-sitter wrapper: generate is not supported on this system" >&2
+    exit 1
+    ;;
+  *)
+    echo "tree-sitter wrapper: unsupported command '$cmd'" >&2
+    exit 1
+    ;;
+esac
